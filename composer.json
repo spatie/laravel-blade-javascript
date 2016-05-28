@@ -1,34 +1,45 @@
 {
-    "name": "spatie/:package_name",
-    "description": ":package_description",
+    "name": "spatie/laravel-blade-javascript",
+    "description": "A Blade directive to export variables to JavaScript",
     "keywords": [
         "spatie",
-        ":package_name"
+        "laravel",
+        "blade",
+        "javascript",
+        "directive",
+        "laravel-blade-javascript"
     ],
-    "homepage": "https://github.com/spatie/:package_name",
+    "homepage": "https://github.com/spatie/laravel-blade-javascript",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        },
+        {
+            "name": "Sebastian De Deyne",
+            "email": "sebastian@spatie.be",
             "homepage": "https://spatie.be",
             "role": "Developer"
         }
     ],
     "require": {
-        "php" : "^7.0"
+        "php" : "^7.0",
+        "orchestra/testbench": "^3.2"
     },
     "require-dev": {
         "phpunit/phpunit": "5.*"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "Spatie\\BladeJavaScript\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Test\\": "tests"
+            "Spatie\\BladeJavaScript\\Test\\": "tests"
         }
     },
     "scripts": {

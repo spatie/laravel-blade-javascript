@@ -1,10 +1,11 @@
 <?php
 
-namespace Spatie\BladeJavascript;
+namespace Spatie\BladeJavaScript;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class BladeJavascriptServiceProvider extends ServiceProvider
+class BladeJavaScriptServiceProvider extends ServiceProvider
 {
     public function boot()
     {

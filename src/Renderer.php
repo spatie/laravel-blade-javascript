@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\BladeJavascript;
+namespace Spatie\BladeJavaScript;
 
 use Illuminate\Contracts\Support\Jsonable;
 
