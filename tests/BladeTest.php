@@ -31,20 +31,12 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_jsonable_objects()
     {
-        $parameter = new class implements Jsonable
- {
-     /**
-             * Convert the object to its JSON representation.
-             *
-             * @param int $options
-             *
-             * @return string
-             */
+        $parameter = new class implements Jsonable {
             public function toJson($options = 0)
             {
                 return json_encode(['jsonableKey' => 'jsonableValue']);
             }
- };
+        };
 
         $this->assertEquals(
             '<script type="text/javascript">{"jsonableKey":"jsonableValue"}</script>',
@@ -55,18 +47,12 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_arrayable_objects()
     {
-        $parameter = new class implements Arrayable
- {
-     /**
-             * Get the instance as an array.
-             *
-             * @return array
-             */
+        $parameter = new class implements Arrayable {
             public function toArray()
             {
                 return ['arrayableKey' => 'arrayableValue'];
             }
- };
+        };
 
         $this->assertEquals(
             '<script type="text/javascript">{"arrayableKey":"arrayableValue"}</script>',
