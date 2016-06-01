@@ -33,12 +33,16 @@ class Renderer
      */
     protected function normalizeArguments($arguments)
     {
+        if (count($arguments) == 2) {
+            return [$arguments[0] => $arguments[1]];
+        }
+
         if ($arguments[0] instanceof Arrayable) {
             return $arguments[0]->toArray();
         }
 
-        if (count($arguments) == 2) {
-            return [$arguments[0] => $arguments[1]];
+        if (! is_array($arguments[0])) {
+            $arguments[0] = [$arguments[0]];
         }
 
         return $arguments[0];
@@ -51,6 +55,7 @@ class Renderer
      */
     public function buildJavaScriptSyntax($variables)
     {
+
         $js = $this->buildNamespaceDeclaration();
 
         foreach ($variables as $key => $value) {

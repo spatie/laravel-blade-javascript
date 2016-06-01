@@ -3,7 +3,9 @@
 namespace Spatie\BladeJavaScript\Transformers;
 
 use Exception;
+use JsonSerializable;
 use Spatie\BladeJavaScript\Transformer;
+use StdClass;
 
 class Object implements Transformer
 {
@@ -14,12 +16,12 @@ class Object implements Transformer
 
     public function transform($value)
     {
-        if ($value instanceof JsonSerializable || $value instanceof StdClass) {
-            return json_encode($value);
+        if (method_exists($value, 'toJson')) {
+            return $value->toJson();
         }
 
-        if (method_exists($value, 'toJson')) {
-            return $value;
+        if ($value instanceof JsonSerializable || $value instanceof StdClass) {
+            return json_encode($value);
         }
 
         if (!method_exists($value, '__toString')) {

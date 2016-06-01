@@ -46,9 +46,11 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Credits
 
-- [Sebastian De Deyne](https://github.com/seb)
 - [Freek Van der Herten](https://github.com/freekmurze)
+- [Sebastian De Deyne](https://github.com/seb)
 - [All Contributors](../../contributors)
+
+This repository contains some code from the [laracasts/PHP-Vars-To-Js-Transformer](https://github.com/laracasts/PHP-Vars-To-Js-Transformer) package written by [Jeffrey Way](https://github.com/JeffreyWay).
 
 ## About Spatie
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
