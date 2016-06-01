@@ -63,7 +63,7 @@ class Renderer
 
     protected function buildNamespaceDeclaration(): string
     {
-        if ($this->namespace === 'window') {
+        if ($this->namespace == '') {
             return '';
         }
 
@@ -78,7 +78,9 @@ class Renderer
      */
     protected function buildVariableInitialization(string $key, $value)
     {
-        return "{$this->namespace}.{$key} = {$this->optimizeValueForJavaScript($value)};";
+        $delimiter = $this->namespace ? '.' : '';
+
+        return "{$this->namespace}{$delimiter}{$key} = {$this->optimizeValueForJavaScript($value)};";
     }
 
     /**

@@ -137,12 +137,12 @@ class BladeTest extends TestCase
     }
 
     /** @test */
-    public function it_can_use_a_namespace_to_render_data()
+    public function it_can_render_data_without_a_namespace()
     {
-        $this->app['config']->set('laravel-blade-javascript.namespace', 'spatie');
+        $this->app['config']->set('laravel-blade-javascript.namespace', '');
 
         $this->assertEquals(
-            '<script type="text/javascript">window.spatie = window.spatie || {};spatie.key = \'value\';</script>',
+            '<script type="text/javascript">key = \'value\';</script>',
             $this->renderView('keyValue')
         );
     }
