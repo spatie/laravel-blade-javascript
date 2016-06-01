@@ -14,7 +14,7 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
         ], 'config');
 
         Blade::directive('javascript', function ($expression) {
-            return "<?php \Spatie\BladeJavascript\Renderer::render({$expression}); ?>";
+            return "<?= \Spatie\BladeJavaScript\Renderer::render({$this->removeBrackets($expression)}); ?>";
         });
     }
 
@@ -24,5 +24,10 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
             __DIR__.'/../config/laravel-blade-javascript.php',
             'laravel-blade-javascript'
         );
+    }
+
+    protected function removeBrackets(string $expression): string
+    {
+        return trim($expression, '()');
     }
 }

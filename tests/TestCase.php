@@ -2,7 +2,7 @@
 
 namespace Spatie\BladeJavaScript\Test;
 
-use File;
+use Artisan;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\BladeJavaScript\BladeJavaScriptServiceProvider;
 
@@ -11,6 +11,8 @@ abstract class TestCase extends Orchestra
     public function setUp()
     {
         parent::setUp();
+        Artisan::call('view:clear');
+        Artisan::call('cache:clear');
     }
 
     /**
@@ -37,10 +39,15 @@ abstract class TestCase extends Orchestra
 
     /**
      * @param $viewName
-     * 
+     * @param array $withParameters
+     *
      * @return string
+     *
+     * @throws \Exception
+     * @throws \Throwable
      */
-    public function renderView($viewName) {
-        return view($viewName)->render();
+    public function renderView($viewName, $withParameters = [])
+    {
+        return view($viewName)->with($withParameters)->render();
     }
 }

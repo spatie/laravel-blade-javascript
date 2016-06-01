@@ -2,13 +2,25 @@
 
 namespace Spatie\BladeJavaScript;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 
 class Renderer
 {
-    public static function render($data): string
+    /**
+     * @param array ...$arguments
+     *
+     * @return string
+     */
+    public static function render(...$arguments): string
     {
-        $output = "<script type=\"text/javascript\">";
+        $data = $arguments[0];
+
+        if (count($arguments) == 2) {
+            $data = [$arguments[0] => $arguments[1]];
+        }
+
+        $output = '<script type="text/javascript">';
 
         $namespace = config('laravel-blade-javascript.namespace');
 
@@ -18,15 +30,24 @@ class Renderer
 
         $output .= static::formatData($data);
 
-        $output .= "</script>";
+        $output .= '</script>';
 
         return $output;
     }
 
-    protected function formatData($data): string
+    /**
+     * @param mixed $data
+     *
+     * @return string
+     */
+    protected static function formatData($data): string
     {
         if ($data instanceof Jsonable) {
             return $data->toJson();
+        }
+
+        if ($data instanceof Arrayable) {
+            return json_encode($data->toArray());
         }
 
         return json_encode($data);
