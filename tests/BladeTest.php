@@ -3,7 +3,6 @@
 namespace Spatie\Permission\Test;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
 use Spatie\BladeJavaScript\Test\TestCase;
 
 class BladeTest extends TestCase
@@ -31,12 +30,13 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_arrayable_objects()
     {
-        $parameter = new class implements Arrayable {
-            public function toArray()
-            {
-                return ['arrayableKey' => 'arrayableValue'];
-            }
-        };
+        $parameter = new class implements Arrayable
+ {
+     public function toArray()
+     {
+         return ['arrayableKey' => 'arrayableValue'];
+     }
+ };
 
         $this->assertEquals(
             '<script type="text/javascript">window.js = window.js || {};js.arrayableKey = \'arrayableValue\';</script>',

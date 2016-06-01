@@ -9,21 +9,8 @@ class Renderer
 {
     protected $namespace;
 
-    /**
-     * All transformable types.
-     *
-     * @var array
-     */
-    protected $types = [
-        'String',
-        'Array',
-        'Object',
-        'Numeric',
-        'Boolean',
-        'Null'
-    ];
-
-    public function __construct(Repository $config) {
+    public function __construct(Repository $config)
+    {
         $this->namespace = $config->get('laravel-blade-javascript.namespace') ?? 'window';
     }
 
@@ -36,11 +23,12 @@ class Renderer
     {
         $variables = $this->normalizeArguments($arguments);
 
-        return '<script type="text/javascript">' . $this->buildJavaScriptSyntax($variables) . '</script>';
+        return '<script type="text/javascript">'.$this->buildJavaScriptSyntax($variables).'</script>';
     }
 
     /**
      * @param $arguments
+     *
      * @return array
      */
     protected function normalizeArguments($arguments)
@@ -57,7 +45,8 @@ class Renderer
     }
 
     /**
-     * @param  array $variables
+     * @param array $variables
+     *
      * @return array
      */
     public function buildJavaScriptSyntax($variables)
@@ -67,7 +56,6 @@ class Renderer
         foreach ($variables as $key => $value) {
             $js .= $this->buildVariableInitialization($key, $value);
         }
-
 
         return $js;
     }
@@ -85,8 +73,9 @@ class Renderer
     }
 
     /**
-     * @param  string $key
-     * @param  string $value
+     * @param string $key
+     * @param string $value
+     *
      * @return string
      */
     protected function buildVariableInitialization($key, $value)
@@ -95,114 +84,35 @@ class Renderer
     }
 
     /**
-     * @param  string $value
-     * @throws Exception
+     * @param string $value
+     *
      * @return string
+     *
+     * @throws \Exception
      */
     protected function optimizeValueForJavaScript($value)
     {
-        // For every transformable type, let's see if
-        // it needs to be transformed for JS-use.
+        $transformers = $this->getAllTransformers();
 
-        foreach ($this->types as $transformer) {
-            $js = $this->{"transform{$transformer}"}($value);
+        $transformers = $transformers->filter(function (Transformer $transformer) use ($value) {
+           return $transformer->canTransform($value);
+        });
 
-            if (!is_null($js)) {
-                return $js;
-            }
+        if ($transformers->isEmpty()) {
+            throw new \Exception("Cannot transform value {$value}");
         }
+
+        return $transformers->first()->transform($value);
     }
 
-    /**
-     * @param  string $value
-     * @return string
-     */
-    protected function transformString($value)
+    public function getAllTransformers()
     {
-        if (is_string($value)) {
-            return "'{$this->escape($value)}'";
-        }
+        return collect(glob(__DIR__.'/Transformers/*.php'))->map(function ($fileName) {
+            $className = pathinfo($fileName, PATHINFO_FILENAME);
+
+            $fullClassName = '\\Spatie\\BladeJavaScript\\Transformers\\'.$className;
+
+            return new $fullClassName();
+        });
     }
-
-    /**
-     * @param  array $value
-     * @return string
-     */
-    protected function transformArray($value)
-    {
-        if (is_array($value)) {
-
-            return json_encode($value);
-        }
-    }
-
-    /**
-     * @param  mixed $value
-     * @return mixed
-     */
-    protected function transformNumeric($value)
-    {
-        if (is_numeric($value)) {
-            return $value;
-        }
-    }
-
-    /**
-     * @param  boolean $value
-     * @return string
-     */
-    protected function transformBoolean($value)
-    {
-        if (is_bool($value)) {
-            return $value ? 'true' : 'false';
-        }
-    }
-
-    /**
-     * @param  object $value
-     * @return string
-     * @throws Exception
-     */
-    protected function transformObject($value)
-    {
-        if (!is_object($value)) {
-            return;
-        }
-
-        if ($value instanceof JsonSerializable || $value instanceof StdClass) {
-            return json_encode($value);
-        }
-
-        if (method_exists($value, 'toJson')) {
-            return $value;
-        }
-
-        if (!method_exists($value, '__toString')) {
-            throw new Exception('Cannot transform this object to JavaScript.');
-        }
-
-        return "'{$value}'";
-    }
-
-    /**
-     * @param  mixed $value
-     * @return string|null
-     */
-    protected function transformNull($value)
-    {
-        if (is_null($value)) {
-            return 'null';
-        }
-    }
-
-    /**
-     * @param  string $value
-     * @return string
-     */
-    protected function escape(string $value): string
-    {
-        return str_replace(["\\", "'"], ["\\\\", "\'"], $value);
-    }
-
-
 }
