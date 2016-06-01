@@ -89,12 +89,12 @@ class BladeTest extends TestCase
     public function it_can_render_json_serializable_objects()
     {
         $parameter = new class implements JsonSerializable
-        {
-            public function jsonSerialize()
-            {
-                return ['jsonKey' => 'jsonValue'];
-            }
-        };
+ {
+     public function jsonSerialize()
+     {
+         return ['jsonKey' => 'jsonValue'];
+     }
+ };
 
         $this->assertEquals(
             '<script type="text/javascript">window.js = window.js || {};js.0 = {"jsonKey":"jsonValue"};</script>',
@@ -106,12 +106,12 @@ class BladeTest extends TestCase
     public function it_can_render_an_object_that_implements_toJson()
     {
         $parameter = new class
-        {
-            public function toJson()
-            {
-                return json_encode(['jsonKey' => 'jsonValue']);
-            }
-        };
+ {
+     public function toJson()
+     {
+         return json_encode(['jsonKey' => 'jsonValue']);
+     }
+ };
 
         $this->assertEquals(
             '<script type="text/javascript">window.js = window.js || {};js.0 = {"jsonKey":"jsonValue"};</script>',
@@ -123,12 +123,12 @@ class BladeTest extends TestCase
     public function it_can_render_an_object_that_implements_to_string()
     {
         $parameter = new class
-        {
-            public function __toString()
-            {
-                return 'string';
-            }
-        };
+ {
+     public function __toString()
+     {
+         return 'string';
+     }
+ };
 
         $this->assertEquals(
             '<script type="text/javascript">window.js = window.js || {};js.0 = \'string\';</script>',
