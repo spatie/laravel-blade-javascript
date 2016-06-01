@@ -12,7 +12,7 @@ class BladeTest extends TestCase
     public function it_can_render_a_key_value_pair()
     {
         $this->assertEquals(
-            '<script type="text/javascript">{"key":"value"}</script>',
+            '<script type="text/javascript">window.js = window.js || {};js.key = \'value\';</script>',
             $this->renderView('keyValue')
         );
     }
@@ -23,23 +23,7 @@ class BladeTest extends TestCase
         $parameter = ['key' => 'value'];
 
         $this->assertEquals(
-            '<script type="text/javascript">{"key":"value"}</script>',
-            $this->renderView('variable', compact('parameter'))
-        );
-    }
-
-    /** @test */
-    public function it_can_render_jsonable_objects()
-    {
-        $parameter = new class implements Jsonable {
-            public function toJson($options = 0)
-            {
-                return json_encode(['jsonableKey' => 'jsonableValue']);
-            }
-        };
-
-        $this->assertEquals(
-            '<script type="text/javascript">{"jsonableKey":"jsonableValue"}</script>',
+            '<script type="text/javascript">window.js = window.js || {};js.key = \'value\';</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -55,7 +39,7 @@ class BladeTest extends TestCase
         };
 
         $this->assertEquals(
-            '<script type="text/javascript">{"arrayableKey":"arrayableValue"}</script>',
+            '<script type="text/javascript">window.js = window.js || {};js.arrayableKey = \'arrayableValue\';</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -66,7 +50,7 @@ class BladeTest extends TestCase
         $this->app['config']->set('laravel-blade-javascript.namespace', 'spatie');
 
         $this->assertEquals(
-            '<script type="text/javascript">window.spatie = window.spatie || {};{"key":"value"}</script>',
+            '<script type="text/javascript">window.spatie = window.spatie || {};spatie.key = \'value\';</script>',
             $this->renderView('keyValue')
         );
     }
