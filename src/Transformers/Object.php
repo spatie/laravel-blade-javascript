@@ -9,11 +9,16 @@ use StdClass;
 
 class Object implements Transformer
 {
-    public function canTransform($value): string
+    public function canTransform($value): bool
     {
         return is_object($value);
     }
 
+    /**
+     * @param $value
+     * @return string
+     * @throws \Exception
+     */
     public function transform($value)
     {
         if (method_exists($value, 'toJson')) {

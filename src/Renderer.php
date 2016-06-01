@@ -2,8 +2,10 @@
 
 namespace Spatie\BladeJavaScript;
 
+use Exception;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
 
 class Renderer
 {
@@ -29,9 +31,9 @@ class Renderer
     /**
      * @param $arguments
      *
-     * @return array
+     * @return mixed
      */
-    protected function normalizeArguments($arguments)
+    protected function normalizeArguments(array $arguments)
     {
         if (count($arguments) == 2) {
             return [$arguments[0] => $arguments[1]];
@@ -48,12 +50,7 @@ class Renderer
         return $arguments[0];
     }
 
-    /**
-     * @param array $variables
-     *
-     * @return array
-     */
-    public function buildJavaScriptSyntax($variables)
+    public function buildJavaScriptSyntax(array $variables): string
     {
         $js = $this->buildNamespaceDeclaration();
 
@@ -64,12 +61,9 @@ class Renderer
         return $js;
     }
 
-    /**
-     * @return string
-     */
-    protected function buildNamespaceDeclaration()
+    protected function buildNamespaceDeclaration(): string
     {
-        if ($this->namespace == 'window') {
+        if ($this->namespace === 'window') {
             return '';
         }
 
@@ -78,23 +72,23 @@ class Renderer
 
     /**
      * @param string $key
-     * @param string $value
+     * @param mixed $value
      *
      * @return string
      */
-    protected function buildVariableInitialization($key, $value)
+    protected function buildVariableInitialization(string $key, $value)
     {
         return "{$this->namespace}.{$key} = {$this->optimizeValueForJavaScript($value)};";
     }
 
     /**
-     * @param string $value
+     * @param mixed $value
      *
      * @return string
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    protected function optimizeValueForJavaScript($value)
+    protected function optimizeValueForJavaScript($value): string
     {
         $transformers = $this->getAllTransformers();
 
@@ -103,13 +97,13 @@ class Renderer
         });
 
         if ($transformers->isEmpty()) {
-            throw new \Exception("Cannot transform value {$value}");
+            throw new Exception("Cannot transform value {$value}");
         }
 
         return $transformers->first()->transform($value);
     }
 
-    public function getAllTransformers()
+    public function getAllTransformers(): Collection
     {
         return collect(glob(__DIR__.'/Transformers/*.php'))->map(function ($fileName) {
             $className = pathinfo($fileName, PATHINFO_FILENAME);

@@ -6,12 +6,16 @@ use Spatie\BladeJavaScript\Transformer;
 
 class PhpNull implements Transformer
 {
-    public function canTransform($value): string
+    public function canTransform($value): bool
     {
         return is_null($value);
     }
 
-    public function transform($value)
+    /**
+     * @param $value
+     * @return string
+     */
+    public function transform($value): string
     {
         return 'null';
     }

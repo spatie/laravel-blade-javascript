@@ -6,12 +6,16 @@ use Spatie\BladeJavaScript\Transformer;
 
 class PhpArray implements Transformer
 {
-    public function canTransform($value): string
+    public function canTransform($value): bool
     {
         return is_array($value);
     }
 
-    public function transform($value)
+    /**
+     * @param $value
+     * @return string
+     */
+    public function transform($value): string
     {
         return json_encode($value);
     }

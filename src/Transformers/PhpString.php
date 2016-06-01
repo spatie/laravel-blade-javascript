@@ -6,12 +6,16 @@ use Spatie\BladeJavaScript\Transformer;
 
 class PhpString implements Transformer
 {
-    public function canTransform($value): string
+    public function canTransform($value): bool
     {
         return is_string($value);
     }
 
-    public function transform($value)
+    /**
+     * @param $value
+     * @return string
+     */
+    public function transform($value): string
     {
         return "'{$this->escape($value)}'";
     }
