@@ -27,10 +27,11 @@
     ],
     "require": {
         "php" : "^7.0",
-        "orchestra/testbench": "^3.2"
+        "illuminate/support": "^5.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.*"
+        "phpunit/phpunit": "5.*",
+        "orchestra/testbench": "^3.2"
     },
     "autoload": {
         "psr-4": {
