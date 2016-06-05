@@ -34,7 +34,7 @@ abstract class TestCase extends Orchestra
      */
     protected function getEnvironmentSetUp($app)
     {
-        $this->app['config']->set('laravel-blade-javascript.namespace', 'js');
+        $app['config']->set('laravel-blade-javascript.namespace', 'js');
 
         $app['config']->set('view.paths', [__DIR__.'/resources/views']);
     }
