@@ -41,7 +41,7 @@ class Renderer
     {
         $variables = $this->normalizeArguments($arguments);
 
-        return '<script type="text/javascript">'.$this->buildJavaScriptSyntax($variables).'</script>';
+        return '<script type="text/javascript">' . $this->buildJavaScriptSyntax($variables) . '</script>';
     }
 
     /**
@@ -68,13 +68,13 @@ class Renderer
 
     public function buildJavaScriptSyntax(array $variables): string
     {
-        $javaScript = $this->buildNamespaceDeclaration();
-
-        foreach ($variables as $key => $value) {
-            $javaScript .= $this->buildVariableInitialization($key, $value);
-        }
-
-        return $javaScript;
+        return collect($variables)
+            ->map(function ($value, $key) {
+                return $this->buildVariableInitialization($key, $value);
+            })
+            ->reduce(function ($javaScriptSyntax, $variableInitialization) {
+                return $javaScriptSyntax . $variableInitialization;
+            }, $this->buildNamespaceDeclaration());
     }
 
     protected function buildNamespaceDeclaration(): string
@@ -88,7 +88,7 @@ class Renderer
 
     /**
      * @param string $key
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return string
      */
@@ -110,8 +110,8 @@ class Renderer
     {
         $transformers = $this->getAllTransformers()
             ->filter(function (Transformer $transformer) use ($value) {
-           return $transformer->canTransform($value);
-        });
+                return $transformer->canTransform($value);
+            });
 
         if ($transformers->isEmpty()) {
             throw new Exception("Cannot transform value {$value}");
