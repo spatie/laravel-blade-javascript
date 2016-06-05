@@ -22,7 +22,7 @@ The rendered view will output:
 
 So in your browser you now have access to a key variable:
 ```js
-console.log('key'); //outputs "value"
+console.log(key); //outputs "value"
 ```
 
 You can also use a single argument:
