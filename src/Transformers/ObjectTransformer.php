@@ -3,7 +3,6 @@
 namespace Spatie\BladeJavaScript\Transformers;
 
 use Exception;
-use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 use StdClass;
 
