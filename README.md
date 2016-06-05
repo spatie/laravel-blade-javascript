@@ -50,6 +50,19 @@ Optionally the config file can be published with
 php artisan vendor:publish --provider="Spatie\BladeJavaScript\BladeJavaScriptServiceProvider"
 ```
 
+This is the contents of the published config file:
+
+```php
+return [
+
+    /**
+     * All passed values will be present in this JavaScript namespace. Set this to an empty string
+     * to use the window object.
+     */
+    'namespace' => '',
+];
+```
+
 ## Usage
 
 With the package installed you can make use of a `@javascript` Blade directive.
@@ -71,6 +84,12 @@ You can also use a single argument:
 This will also output:
 ```html
 <script type="text/javascript">key = 'value';</script>
+```
+
+When setting the namespace to eg `js` in the config file this will be the output:
+
+```html
+<script type="text/javascript">window['js'] = window['js'] || {};js['key'] = 'value';</script>
 ```
 
 ## Changelog
