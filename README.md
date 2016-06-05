@@ -17,7 +17,12 @@ Here's an example of how it can be used:
 
 The rendered view will output:
 ```html
-<script type="text/javascript">window['js'] = window['js'] || {};js['key'] = 'value';</script>
+<script type="text/javascript">key = 'value';</script>
+```
+
+So in your browser you now have access to a key variable:
+```js
+console.log('key'); //outputs "value"
 ```
 
 You can also use a single argument:
@@ -26,6 +31,8 @@ You can also use a single argument:
 ```
 
 Which will output the same as the first example.
+
+There also support for namespacing all variables.
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
@@ -37,11 +44,33 @@ You can install the package via composer:
 composer require spatie/laravel-blade-javascript
 ```
 
+Optionally the config file can be published with
+
+```bash
+php artisan vendor:publish --provider="Spatie\BladeJavaScript\BladeJavaScriptServiceProvider"
+```
+
 ## Usage
 
-``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+With the package installed you can make use of a `@javascript` Blade directive.
+
+```php
+@javascript('key', 'value')
+```
+
+The rendered view will output:
+```html
+<script type="text/javascript">key = 'value';</script>
+```
+
+You can also use a single argument:
+```php
+@javascript(['key' => 'value])
+```
+
+This will also output:
+```html
+<script type="text/javascript">key = 'value';</script>
 ```
 
 ## Changelog
