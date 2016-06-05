@@ -2,6 +2,7 @@
 
 namespace Spatie\Permission\Test;
 
+use ErrorException;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 use Spatie\BladeJavaScript\Test\TestCase;
@@ -145,5 +146,15 @@ class BladeTest extends TestCase
             '<script type="text/javascript">key = \'value\';</script>',
             $this->renderView('keyValue')
         );
+    }
+
+    /** @test */
+    public function it_cannot_translate_resources_to_javascript()
+    {
+        $resource = fopen(__FILE__, 'r');
+
+        $this->expectException(ErrorException::class);
+
+        $this->renderView('variable', ['parameter' => $resource]);
     }
 }

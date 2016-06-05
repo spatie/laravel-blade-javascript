@@ -2,8 +2,8 @@
 
 namespace Spatie\BladeJavaScript\Transformers;
 
-use Exception;
 use JsonSerializable;
+use Spatie\BladeJavaScript\Exceptions\Untransformable;
 use StdClass;
 
 class ObjectTransformer implements Transformer
@@ -23,7 +23,7 @@ class ObjectTransformer implements Transformer
      *
      * @return string
      *
-     * @throws \Exception
+     * @throws \Spatie\BladeJavaScript\Exceptions\Untransformable
      */
     public function transform($value): string
     {
@@ -36,7 +36,7 @@ class ObjectTransformer implements Transformer
         }
 
         if (!method_exists($value, '__toString')) {
-            throw new Exception('Cannot transform this object to JavaScript.');
+            throw Untransformable::cannotTransformObject($value);
         }
 
         return "'{$value}'";

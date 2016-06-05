@@ -2,10 +2,10 @@
 
 namespace Spatie\BladeJavaScript;
 
-use Exception;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
+use Spatie\BladeJavaScript\Exceptions\Untransformable;
 use Spatie\BladeJavaScript\Transformers\ArrayTransformer;
 use Spatie\BladeJavaScript\Transformers\BooleanTransformer;
 use Spatie\BladeJavaScript\Transformers\NullTransformer;
@@ -41,7 +41,7 @@ class Renderer
     {
         $variables = $this->normalizeArguments($arguments);
 
-        return '<script type="text/javascript">' . $this->buildJavaScriptSyntax($variables) . '</script>';
+        return '<script type="text/javascript">'.$this->buildJavaScriptSyntax($variables).'</script>';
     }
 
     /**
@@ -73,7 +73,7 @@ class Renderer
                 return $this->buildVariableInitialization($key, $value);
             })
             ->reduce(function ($javaScriptSyntax, $variableInitialization) {
-                return $javaScriptSyntax . $variableInitialization;
+                return $javaScriptSyntax.$variableInitialization;
             }, $this->buildNamespaceDeclaration());
     }
 
@@ -88,7 +88,7 @@ class Renderer
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return string
      */
@@ -104,7 +104,7 @@ class Renderer
      *
      * @return string
      *
-     * @throws Exception
+     * @throws \Spatie\BladeJavaScript\Exceptions\Untransformable
      */
     protected function optimizeValueForJavaScript($value): string
     {
@@ -114,7 +114,7 @@ class Renderer
             });
 
         if ($transformers->isEmpty()) {
-            throw new Exception("Cannot transform value {$value}");
+            throw Untransformable::noTransformerFound($value);
         }
 
         return $transformers->first()->transform($value);
