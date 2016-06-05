@@ -2,8 +2,13 @@
 
 namespace Spatie\BladeJavaScript\Transformers;
 
-class NumericTransformer  implements Transformer
+class NumericTransformer implements Transformer
 {
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
     public function canTransform($value): bool
     {
         return is_numeric($value);
@@ -14,7 +19,7 @@ class NumericTransformer  implements Transformer
      *
      * @return int
      */
-    public function transform($value)
+    public function transform($value): int
     {
         return $value;
     }

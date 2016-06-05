@@ -7,21 +7,26 @@ use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 use StdClass;
 
-class ObjectTransformer  implements Transformer
+class ObjectTransformer implements Transformer
 {
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
     public function canTransform($value): bool
     {
         return is_object($value);
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return string
      *
      * @throws \Exception
      */
-    public function transform($value)
+    public function transform($value): string
     {
         if (method_exists($value, 'toJson')) {
             return $value->toJson();

@@ -2,15 +2,20 @@
 
 namespace Spatie\BladeJavaScript\Transformers;
 
-class StringTransformer  implements Transformer
+class StringTransformer implements Transformer
 {
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
     public function canTransform($value): bool
     {
         return is_string($value);
     }
 
     /**
-     * @param $value
+     * @param string $value
      *
      * @return string
      */

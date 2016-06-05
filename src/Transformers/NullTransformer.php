@@ -2,15 +2,20 @@
 
 namespace Spatie\BladeJavaScript\Transformers;
 
-class NullTransformer  implements Transformer
+class NullTransformer implements Transformer
 {
+    /**
+     * @param mixed $value
+     *
+     * @return bool
+     */
     public function canTransform($value): bool
     {
         return is_null($value);
     }
 
     /**
-     * @param $value
+     * @param null $value
      *
      * @return string
      */

@@ -2,15 +2,20 @@
 
 namespace Spatie\BladeJavaScript\Transformers;
 
-class ArrayTransformer  implements Transformer
+class ArrayTransformer implements Transformer
 {
+    /**
+     * @param mixed $value
+     * 
+     * @return bool
+     */
     public function canTransform($value): bool
     {
         return is_array($value);
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return string
      */
