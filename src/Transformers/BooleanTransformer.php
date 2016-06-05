@@ -2,9 +2,7 @@
 
 namespace Spatie\BladeJavaScript\Transformers;
 
-use Spatie\BladeJavaScript\Transformer;
-
-class Boolean implements Transformer
+class BooleanTransformer implements Transformer
 {
     public function canTransform($value): bool
     {
@@ -13,6 +11,7 @@ class Boolean implements Transformer
 
     /**
      * @param bool $value
+     *
      * @return string
      */
     public function transform($value)

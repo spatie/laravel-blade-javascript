@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\BladeJavaScript;
+namespace Spatie\BladeJavaScript\Transformers;
 
 interface Transformer
 {

@@ -4,10 +4,9 @@ namespace Spatie\BladeJavaScript\Transformers;
 
 use Exception;
 use JsonSerializable;
-use Spatie\BladeJavaScript\Transformer;
 use StdClass;
 
-class Object implements Transformer
+class ObjectTransformer  implements Transformer
 {
     public function canTransform($value): bool
     {
@@ -16,7 +15,9 @@ class Object implements Transformer
 
     /**
      * @param $value
+     *
      * @return string
+     *
      * @throws \Exception
      */
     public function transform($value)

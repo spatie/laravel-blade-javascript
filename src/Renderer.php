@@ -6,10 +6,26 @@ use Exception;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
+use Spatie\BladeJavaScript\Transformers\ArrayTransformer;
+use Spatie\BladeJavaScript\Transformers\BooleanTransformer;
+use Spatie\BladeJavaScript\Transformers\NullTransformer;
+use Spatie\BladeJavaScript\Transformers\NumericTransformer;
+use Spatie\BladeJavaScript\Transformers\ObjectTransformer;
+use Spatie\BladeJavaScript\Transformers\StringTransformer;
+use Spatie\BladeJavaScript\Transformers\Transformer;
 
 class Renderer
 {
     protected $namespace;
+
+    protected $transformers = [
+        ArrayTransformer::class,
+        BooleanTransformer::class,
+        NullTransformer::class,
+        NumericTransformer::class,
+        ObjectTransformer::class,
+        StringTransformer::class,
+    ];
 
     public function __construct(Repository $config)
     {
@@ -52,13 +68,13 @@ class Renderer
 
     public function buildJavaScriptSyntax(array $variables): string
     {
-        $js = $this->buildNamespaceDeclaration();
+        $javaScript = $this->buildNamespaceDeclaration();
 
         foreach ($variables as $key => $value) {
-            $js .= $this->buildVariableInitialization($key, $value);
+            $javaScript .= $this->buildVariableInitialization($key, $value);
         }
 
-        return $js;
+        return $javaScript;
     }
 
     protected function buildNamespaceDeclaration(): string
@@ -67,20 +83,20 @@ class Renderer
             return '';
         }
 
-        return "window.{$this->namespace} = window.{$this->namespace} || {};";
+        return "window['{$this->namespace}'] = window['{$this->namespace}'] || {};";
     }
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return string
      */
     protected function buildVariableInitialization(string $key, $value)
     {
-        $delimiter = $this->namespace ? '.' : '';
+        $variableName = $this->namespace ? "{$this->namespace}['{$key}']" : $key;
 
-        return "{$this->namespace}{$delimiter}{$key} = {$this->optimizeValueForJavaScript($value)};";
+        return "{$variableName} = {$this->optimizeValueForJavaScript($value)};";
     }
 
     /**
@@ -92,9 +108,8 @@ class Renderer
      */
     protected function optimizeValueForJavaScript($value): string
     {
-        $transformers = $this->getAllTransformers();
-
-        $transformers = $transformers->filter(function (Transformer $transformer) use ($value) {
+        $transformers = $this->getAllTransformers()
+            ->filter(function (Transformer $transformer) use ($value) {
            return $transformer->canTransform($value);
         });
 
@@ -107,12 +122,8 @@ class Renderer
 
     public function getAllTransformers(): Collection
     {
-        return collect(glob(__DIR__.'/Transformers/*.php'))->map(function ($fileName) {
-            $className = pathinfo($fileName, PATHINFO_FILENAME);
-
-            $fullClassName = '\\Spatie\\BladeJavaScript\\Transformers\\'.$className;
-
-            return new $fullClassName();
+        return collect($this->transformers)->map(function ($className) {
+            return new $className();
         });
     }
 }

@@ -2,9 +2,7 @@
 
 namespace Spatie\BladeJavaScript\Transformers;
 
-use Spatie\BladeJavaScript\Transformer;
-
-class PhpArray implements Transformer
+class ArrayTransformer  implements Transformer
 {
     public function canTransform($value): bool
     {
@@ -13,6 +11,7 @@ class PhpArray implements Transformer
 
     /**
      * @param $value
+     *
      * @return string
      */
     public function transform($value): string

@@ -12,7 +12,7 @@ class BladeTest extends TestCase
     public function it_can_render_a_key_value_pair()
     {
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.key = \'value\';</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'key\'] = \'value\';</script>',
             $this->renderView('keyValue')
         );
     }
@@ -23,7 +23,7 @@ class BladeTest extends TestCase
         $parameter = ['key' => 'value'];
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.key = \'value\';</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'key\'] = \'value\';</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -34,7 +34,7 @@ class BladeTest extends TestCase
         $parameter = ['number' => 1];
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.number = 1;</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'number\'] = 1;</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -45,14 +45,14 @@ class BladeTest extends TestCase
         $parameter = ['boolean' => true];
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.boolean = true;</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'boolean\'] = true;</script>',
             $this->renderView('variable', compact('parameter'))
         );
 
         $parameter = ['boolean' => false];
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.boolean = false;</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'boolean\'] = false;</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -63,7 +63,7 @@ class BladeTest extends TestCase
         $parameter = ['nothing' => null];
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.nothing = null;</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'nothing\'] = null;</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -80,7 +80,7 @@ class BladeTest extends TestCase
  };
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.arrayableKey = \'arrayableValue\';</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'arrayableKey\'] = \'arrayableValue\';</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -97,7 +97,7 @@ class BladeTest extends TestCase
  };
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.0 = {"jsonKey":"jsonValue"};</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'0\'] = {"jsonKey":"jsonValue"};</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -114,7 +114,7 @@ class BladeTest extends TestCase
  };
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.0 = {"jsonKey":"jsonValue"};</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'0\'] = {"jsonKey":"jsonValue"};</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
@@ -131,7 +131,7 @@ class BladeTest extends TestCase
  };
 
         $this->assertEquals(
-            '<script type="text/javascript">window.js = window.js || {};js.0 = \'string\';</script>',
+            '<script type="text/javascript">window[\'js\'] = window[\'js\'] || {};js[\'0\'] = \'string\';</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }
