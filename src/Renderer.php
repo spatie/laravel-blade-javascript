@@ -16,7 +16,7 @@ use Spatie\BladeJavaScript\Transformers\Transformer;
 
 class Renderer
 {
-    protected $namespace;
+    protected $namespace = 'window';
 
     protected $transformers = [
         ArrayTransformer::class,
@@ -29,7 +29,7 @@ class Renderer
 
     public function __construct(Repository $config)
     {
-        $this->namespace = $config->get('laravel-blade-javascript.namespace') ?? 'window';
+        $this->namespace = $config->get('laravel-blade-javascript.namespace', 'window');
     }
 
     /**
