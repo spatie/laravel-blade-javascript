@@ -51,7 +51,7 @@ class Renderer
      */
     protected function normalizeArguments(array $arguments)
     {
-        if (count($arguments) == 2) {
+        if (count($arguments) === 2) {
             return [$arguments[0] => $arguments[1]];
         }
 
@@ -79,7 +79,7 @@ class Renderer
 
     protected function buildNamespaceDeclaration(): string
     {
-        if ($this->namespace == '') {
+        if (empty($this->namespace)) {
             return '';
         }
 
