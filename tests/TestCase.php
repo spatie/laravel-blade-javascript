@@ -44,9 +44,6 @@ abstract class TestCase extends Orchestra
      * @param array $withParameters
      *
      * @return string
-     *
-     * @throws \Exception
-     * @throws \Throwable
      */
     public function renderView($viewName, $withParameters = [])
     {
