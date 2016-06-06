@@ -7,7 +7,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-blade-javascript.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-blade-javascript)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-blade-javascript.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-blade-javascript)
 
-This package contains a Blade directive to expofg values to JavaScript.
+This package contains a Blade directive to export values to JavaScript.
 
 Here's an example of how it can be used:
 
