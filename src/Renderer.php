@@ -122,7 +122,7 @@ class Renderer
 
     public function getAllTransformers(): Collection
     {
-        return collect($this->transformers)->map(function ($className) {
+        return collect($this->transformers)->map(function (string $className): Transformer {
             return new $className();
         });
     }
