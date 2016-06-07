@@ -143,7 +143,7 @@ class BladeTest extends TestCase
         $this->app['config']->set('laravel-blade-javascript.namespace', '');
 
         $this->assertEquals(
-            '<script type="text/javascript">key = \'value\';</script>',
+            '<script type="text/javascript">window[\'key\'] = \'value\';</script>',
             $this->renderView('keyValue')
         );
     }
