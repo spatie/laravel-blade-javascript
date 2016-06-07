@@ -94,7 +94,7 @@ class Renderer
      */
     protected function buildVariableInitialization(string $key, $value)
     {
-        $variableName = $this->namespace ? "{$this->namespace}['{$key}']" : "window['{$key}']";
+        $variableName = $this->namespace ? "window['{$this->namespace}']['{$key}']" : "window['{$key}']";
 
         return "{$variableName} = {$this->optimizeValueForJavaScript($value)};";
     }
