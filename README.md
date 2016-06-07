@@ -44,6 +44,16 @@ You can install the package via composer:
 composer require spatie/laravel-blade-javascript
 ```
 
+Next up, the service provider must be registered:
+
+```php
+'providers' => [
+    ...
+    Spatie\BladeJavaScript\BladeJavaScriptServiceProvider::class,
+
+];
+```
+
 Optionally the config file can be published with
 
 ```bash
