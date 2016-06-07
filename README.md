@@ -17,7 +17,7 @@ Here's an example of how it can be used:
 
 The rendered view will output:
 ```html
-<script type="text/javascript">key = 'value';</script>
+<script type="text/javascript">window['key'] = 'value';</script>
 ```
 
 So in your browser you now have access to a key variable:
