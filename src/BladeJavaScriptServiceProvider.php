@@ -28,6 +28,6 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
 
     protected function removeBrackets(string $expression): string
     {
-        return trim($expression, '()');
+        return substr($expression, 1, -1);
     }
 }
