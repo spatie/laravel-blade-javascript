@@ -108,16 +108,13 @@ class Renderer
      */
     protected function optimizeValueForJavaScript($value): string
     {
-        $transformers = $this->getAllTransformers()
-            ->filter(function (Transformer $transformer) use ($value) {
+        return $this->getAllTransformers()
+            ->first(function ($i, Transformer $transformer) use ($value) {
                 return $transformer->canTransform($value);
-            });
-
-        if ($transformers->isEmpty()) {
-            throw Untransformable::noTransformerFound($value);
-        }
-
-        return $transformers->first()->transform($value);
+            }, function () use ($value) {
+                throw Untransformable::noTransformerFound($value);
+            })
+            ->transform($value);
     }
 
     public function getAllTransformers(): Collection
