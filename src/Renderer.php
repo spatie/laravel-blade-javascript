@@ -109,7 +109,7 @@ class Renderer
     protected function optimizeValueForJavaScript($value): string
     {
         return $this->getAllTransformers()
-            ->first(function ($i, Transformer $transformer) use ($value) {
+            ->first(function ($key, Transformer $transformer) use ($value) {
                 return $transformer->canTransform($value);
             }, function () use ($value) {
                 throw Untransformable::noTransformerFound($value);
