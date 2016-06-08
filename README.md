@@ -27,7 +27,7 @@ console.log(key); //outputs "value"
 
 You can also use a single argument:
 ```php
-@javascript(['key' => 'value])
+@javascript(['key' => 'value'])
 ```
 
 Which will output the same as the first example.
