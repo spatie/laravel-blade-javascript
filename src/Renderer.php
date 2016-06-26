@@ -41,7 +41,7 @@ class Renderer
     {
         $variables = $this->normalizeArguments($arguments);
 
-        return '<script type="text/javascript">'.$this->buildJavaScriptSyntax($variables).'</script>';
+        return '<script>'.$this->buildJavaScriptSyntax($variables).'</script>';
     }
 
     /**

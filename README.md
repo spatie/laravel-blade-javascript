@@ -17,7 +17,7 @@ Here's an example of how it can be used:
 
 The rendered view will output:
 ```html
-<script type="text/javascript">window['key'] = 'value';</script>
+<script>window['key'] = 'value';</script>
 ```
 
 So in your browser you now have access to a key variable:
@@ -83,7 +83,7 @@ With the package installed you can make use of a `@javascript` Blade directive.
 
 The rendered view will output:
 ```html
-<script type="text/javascript">key = 'value';</script>
+<script>key = 'value';</script>
 ```
 
 You can also use a single argument:
@@ -93,13 +93,13 @@ You can also use a single argument:
 
 This will also output:
 ```html
-<script type="text/javascript">key = 'value';</script>
+<script>key = 'value';</script>
 ```
 
 When setting the namespace to eg `js` in the config file this will be the output:
 
 ```html
-<script type="text/javascript">window['js'] = window['js'] || {};js['key'] = 'value';</script>
+<script>window['js'] = window['js'] || {};js['key'] = 'value';</script>
 ```
 
 ## Changelog
