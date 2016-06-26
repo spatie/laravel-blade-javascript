@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-blade-javascript` will be documented in this file
 
+## 1.0.4 - 2016-06-26
+- removed type attribute on script tags
+
 ## 1.0.3 - 2016-06-08
 - fixed a bug where functions passed to the directive would cause an error
 
