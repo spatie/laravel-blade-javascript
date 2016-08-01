@@ -30,17 +30,6 @@ class BladeTest extends TestCase
     }
 
     /** @test */
-    public function it_can_render_a_numeric_value()
-    {
-        $parameter = ['number' => 1];
-
-        $this->assertEquals(
-            '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'number\'] = 1;</script>',
-            $this->renderView('variable', compact('parameter'))
-        );
-    }
-
-    /** @test */
     public function it_can_render_a_boolean()
     {
         $parameter = ['boolean' => true];
@@ -54,6 +43,28 @@ class BladeTest extends TestCase
 
         $this->assertEquals(
             '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'boolean\'] = false;</script>',
+            $this->renderView('variable', compact('parameter'))
+        );
+    }
+
+    /** @test */
+    public function it_can_render_an_integer()
+    {
+        $parameter = ['number' => 5];
+
+        $this->assertEquals(
+            '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'number\'] = 5;</script>',
+            $this->renderView('variable', compact('parameter'))
+        );
+    }
+
+    /** @test */
+    public function it_can_render_a_float()
+    {
+        $parameter = ['number' => 5.5];
+
+        $this->assertEquals(
+            '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'number\'] = 5.5;</script>',
             $this->renderView('variable', compact('parameter'))
         );
     }

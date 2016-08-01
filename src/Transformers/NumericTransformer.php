@@ -15,11 +15,11 @@ class NumericTransformer implements Transformer
     }
 
     /**
-     * @param int $value
+     * @param float|int $value
      *
-     * @return int
+     * @return float|int
      */
-    public function transform($value): int
+    public function transform($value)
     {
         return $value;
     }
