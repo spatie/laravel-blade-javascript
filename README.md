@@ -96,7 +96,7 @@ The rendered view will output:
 
 You can also use a single argument:
 ```php
-@javascript(['key' => 'value])
+@javascript(['key' => 'value'])
 ```
 
 This will also output:
