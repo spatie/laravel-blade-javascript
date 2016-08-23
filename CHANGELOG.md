@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-blade-javascript` will be documented in this file
 
+## 1.0.6 - 2016-08-20
+- make L5.3 compatible
+
 ## 1.0.5 - 2016-08-01
 - fixed a bug where floats were casted to ints
 
