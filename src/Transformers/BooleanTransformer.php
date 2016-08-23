@@ -6,7 +6,7 @@ class BooleanTransformer implements Transformer
 {
     /**
      * @param mixed $value
-     * 
+     *
      * @return bool
      */
     public function canTransform($value): bool
