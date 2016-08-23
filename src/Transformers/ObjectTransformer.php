@@ -21,9 +21,9 @@ class ObjectTransformer implements Transformer
     /**
      * @param mixed $value
      *
-     * @return string
-     *
      * @throws \Spatie\BladeJavaScript\Exceptions\Untransformable
+     *
+     * @return string
      */
     public function transform($value): string
     {

@@ -102,9 +102,9 @@ class Renderer
     /**
      * @param mixed $value
      *
-     * @return string
-     *
      * @throws \Spatie\BladeJavaScript\Exceptions\Untransformable
+     *
+     * @return string
      */
     protected function optimizeValueForJavaScript($value): string
     {

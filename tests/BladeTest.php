@@ -83,7 +83,7 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_arrayable_objects()
     {
-        $parameter = new class implements Arrayable {
+        $parameter = new class() implements Arrayable {
             public function toArray()
             {
                 return ['arrayableKey' => 'arrayableValue'];
@@ -99,7 +99,7 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_json_serializable_objects()
     {
-        $parameter = new class implements JsonSerializable {
+        $parameter = new class() implements JsonSerializable {
             public function jsonSerialize()
             {
                 return ['jsonKey' => 'jsonValue'];
@@ -115,7 +115,7 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_an_object_that_implements_toJson()
     {
-        $parameter = new class {
+        $parameter = new class() {
             public function toJson()
             {
                 return json_encode(['jsonKey' => 'jsonValue']);
@@ -131,7 +131,7 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_an_object_that_implements_to_string()
     {
-        $parameter = new class {
+        $parameter = new class() {
             public function __toString()
             {
                 return 'string';
