@@ -108,13 +108,7 @@ class Renderer
      */
     protected function optimizeValueForJavaScript($value): string
     {
-        return $this->getAllTransformers()
-            ->first(function ($key, Transformer $transformer) use ($value) {
-                return $transformer->canTransform($value);
-            }, function () use ($value) {
-                throw Untransformable::noTransformerFound($value);
-            })
-            ->transform($value);
+        return $this->getTransformer($value)->transform($value);
     }
 
     public function getAllTransformers(): Collection
@@ -122,5 +116,24 @@ class Renderer
         return collect($this->transformers)->map(function (string $className): Transformer {
             return new $className();
         });
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return \Spatie\BladeJavaScript\Transformers\Transformer
+     *
+     * @throws \Spatie\BladeJavaScript\Exceptions\Untransformable
+     */
+    public function getTransformer($value): Transformer
+    {
+        foreach($this->getAllTransformers() as $transformer)
+        {
+             if ($transformer->canTransform($value)) {
+                 return $transformer;
+             };
+        }
+
+        throw Untransformable::noTransformerFound($value);
     }
 }
