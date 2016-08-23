@@ -59,7 +59,7 @@ class Renderer
             return $arguments[0]->toArray();
         }
 
-        if (!is_array($arguments[0])) {
+        if (! is_array($arguments[0])) {
             $arguments[0] = [$arguments[0]];
         }
 
@@ -127,11 +127,10 @@ class Renderer
      */
     public function getTransformer($value): Transformer
     {
-        foreach($this->getAllTransformers() as $transformer)
-        {
-             if ($transformer->canTransform($value)) {
-                 return $transformer;
-             };
+        foreach ($this->getAllTransformers() as $transformer) {
+            if ($transformer->canTransform($value)) {
+                return $transformer;
+            }
         }
 
         throw Untransformable::noTransformerFound($value);

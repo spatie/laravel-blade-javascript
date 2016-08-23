@@ -35,7 +35,7 @@ class ObjectTransformer implements Transformer
             return json_encode($value);
         }
 
-        if (!method_exists($value, '__toString')) {
+        if (! method_exists($value, '__toString')) {
             throw Untransformable::cannotTransformObject($value);
         }
 

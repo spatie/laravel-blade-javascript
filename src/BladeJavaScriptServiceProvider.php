@@ -14,7 +14,6 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
         ], 'config');
 
         Blade::directive('javascript', function ($expression) {
-
             $expression = $this->makeBackwardsCompatible($expression);
 
             return "<?= app('\Spatie\BladeJavaScript\Renderer')->render{$expression}; ?>";
