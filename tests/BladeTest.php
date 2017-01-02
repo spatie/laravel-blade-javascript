@@ -3,9 +3,9 @@
 namespace Spatie\Permission\Test;
 
 use ErrorException;
-use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 use Spatie\BladeJavaScript\Test\TestCase;
+use Illuminate\Contracts\Support\Arrayable;
 
 class BladeTest extends TestCase
 {
