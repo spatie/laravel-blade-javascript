@@ -2,9 +2,9 @@
 
 namespace Spatie\BladeJavaScript\Transformers;
 
+use StdClass;
 use JsonSerializable;
 use Spatie\BladeJavaScript\Exceptions\Untransformable;
-use StdClass;
 
 class ObjectTransformer implements Transformer
 {
