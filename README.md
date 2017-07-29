@@ -26,15 +26,6 @@ So in your browser you now have access to a key variable:
 console.log(key); //outputs "value"
 ```
 
-You can also use a single argument:
-```php
-@javascript(['key' => 'value'])
-```
-
-Which will output the same as the first example.
-
-There also support for namespacing all variables.
-
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
 ## Postcardware
