@@ -10,6 +10,10 @@
 
 This package contains a Blade directive to export values to JavaScript.
 
+Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
+
+## Usage
+
 Here's an example of how it can be used:
 
 ```php
@@ -35,7 +39,11 @@ Which will output the same as the first example.
 
 There also support for namespacing all variables.
 
-Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
+When setting the namespace to eg `js` in the config file this will be the output:
+
+```html
+<script>window['js'] = window['js'] || {};js['key'] = 'value';</script>
+```
 
 ## Postcardware
 
@@ -80,35 +88,6 @@ return [
      */
     'namespace' => '',
 ];
-```
-
-## Usage
-
-With the package installed you can make use of a `@javascript` Blade directive.
-
-```php
-@javascript('key', 'value')
-```
-
-The rendered view will output:
-```html
-<script>key = 'value';</script>
-```
-
-You can also use a single argument:
-```php
-@javascript(['key' => 'value'])
-```
-
-This will also output:
-```html
-<script>key = 'value';</script>
-```
-
-When setting the namespace to eg `js` in the config file this will be the output:
-
-```html
-<script>window['js'] = window['js'] || {};js['key'] = 'value';</script>
 ```
 
 ## Changelog
