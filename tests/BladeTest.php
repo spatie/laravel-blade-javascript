@@ -147,7 +147,7 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_data_without_a_namespace()
     {
-        $this->app['config']->set('laravel-blade-javascript.namespace', '');
+        $this->app['config']->set('blade-javascript.namespace', '');
 
         $this->assertEquals(
             '<script>window[\'key\'] = \'value\';</script>',

@@ -1,6 +1,10 @@
 # Changelog
 
-All Notable changes to `laravel-blade-javascript` will be documented in this file
+All notable changes to `laravel-blade-javascript` will be documented in this file
+
+## 2.0.0 - 2017-XX-XX
+- make L5.5 compatible
+- renamed config file from `laravel-blade-javascript` to `blade-javascript`
 
 ## 1.1.0 - 2017-01-23
 - make L5.4 compatible
