@@ -10,7 +10,7 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/laravel-blade-javascript.php' => config_path('laravel-blade-javascript.php'),
+            __DIR__.'/../config/blade-javascript.php' => config_path('blade-javascript.php'),
         ], 'config');
 
         Blade::directive('javascript', function ($expression) {
@@ -32,8 +32,8 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/laravel-blade-javascript.php',
-            'laravel-blade-javascript'
+            __DIR__.'/../config/blade-javascript.php',
+            'blade-javascript'
         );
     }
 }
