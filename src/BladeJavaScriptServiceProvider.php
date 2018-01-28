@@ -2,8 +2,8 @@
 
 namespace Spatie\BladeJavaScript;
 
-use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 
 class BladeJavaScriptServiceProvider extends ServiceProvider
 {
