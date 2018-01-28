@@ -2,7 +2,7 @@
 
 namespace Spatie\BladeJavaScript;
 
-use Illuminate\Support\Facades\Blade;
+use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Support\ServiceProvider;
 
 class BladeJavaScriptServiceProvider extends ServiceProvider
@@ -13,10 +13,12 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
             __DIR__.'/../config/blade-javascript.php' => config_path('blade-javascript.php'),
         ], 'config');
 
-        Blade::directive('javascript', function ($expression) {
-            $expression = $this->makeBackwardsCompatible($expression);
+        $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
+            $bladeCompiler->directive('javascript', function ($expression) {
+                $expression = $this->makeBackwardsCompatible($expression);
 
-            return "<?= app('\Spatie\BladeJavaScript\Renderer')->render{$expression}; ?>";
+                return "<?= app('\Spatie\BladeJavaScript\Renderer')->render{$expression}; ?>";
+            });
         });
     }
 
