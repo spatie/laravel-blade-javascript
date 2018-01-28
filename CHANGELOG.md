@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file
 
+## 2.0.1 - 2018-01-28
+- improve service provider
+
 ## 2.0.0 - 2017-08-31
 - make L5.5 compatible
 - renamed config file from `laravel-blade-javascript` to `blade-javascript`
