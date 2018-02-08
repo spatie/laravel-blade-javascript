@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file.
 
+## 2.1.0 - 2018-02-08
+- Added: Laravel 5.6 compatibility
+
 ## 2.0.1 - 2018-01-28
 - Changed: Improve service provider internals
 
@@ -10,10 +13,10 @@ All notable changes to `laravel-blade-javascript` will be documented in this fil
 - Changed: Renamed config file from `laravel-blade-javascript` to `blade-javascript`
 
 ## 1.1.0 - 2017-01-23
-- Added: Laravel 5.4 compatible
+- Added: Laravel 5.4 compatibility
 
 ## 1.0.6 - 2016-08-20
-- Added: Laravel 5.3 compatible
+- Added: Laravel 5.3 compatibility
 
 ## 1.0.5 - 2016-08-01
 - Fixed: Bug where floats were casted to ints
