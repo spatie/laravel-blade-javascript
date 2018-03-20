@@ -92,6 +92,17 @@ class BladeTest extends TestCase
     }
 
     /** @test */
+    public function it_can_render_a_numeric_string_as_a_string()
+    {
+        $parameter = ['socialSecurity' => '123456789'];
+
+        $this->assertEquals(
+            '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'socialSecurity\'] = \'123456789\';</script>',
+            $this->renderView('variable', compact('parameter'))
+        );
+    }
+
+    /** @test */
     public function it_can_render_arrayable_objects()
     {
         $parameter = new class implements Arrayable {
