@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file.
 
+## 2.1.2 - 2018-02-20
+- Rendering improvements
+
 ## 2.1.1 - 2018-02-13
 - Refactor the way the directive is registered
 
