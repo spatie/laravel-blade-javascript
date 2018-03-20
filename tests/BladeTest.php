@@ -169,7 +169,7 @@ class BladeTest extends TestCase
     /** @test */
     public function it_can_render_multiple_variables()
     {
-        $parameter = [ 'first' => 1, 'second' => true ];
+        $parameter = ['first' => 1, 'second' => true];
 
         $this->assertEquals(
             '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'first\'] = 1;window[\'js\'][\'second\'] = true;</script>',
