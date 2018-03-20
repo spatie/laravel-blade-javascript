@@ -27,6 +27,11 @@ class Renderer
         StringTransformer::class,
     ];
 
+    /**
+     * @var Collection
+     */
+    protected $cachedTransformers;
+
     public function __construct(Repository $config)
     {
         $this->namespace = $config->get('blade-javascript.namespace', 'window');
@@ -113,9 +118,14 @@ class Renderer
 
     public function getAllTransformers(): Collection
     {
-        return collect($this->transformers)->map(function (string $className): Transformer {
-            return new $className();
-        });
+        if ($this->cachedTransformers) {
+            return $this->cachedTransformers;
+        }
+
+        return $this->cachedTransformers = collect($this->transformers)
+            ->map(function (string $className): Transformer {
+                return new $className();
+            });
     }
 
     /**
