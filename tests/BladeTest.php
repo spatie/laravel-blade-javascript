@@ -186,4 +186,15 @@ class BladeTest extends TestCase
 
         $this->renderView('variable', ['parameter' => $resource]);
     }
+
+    /** @test */
+    public function it_can_render_a_customized_view()
+    {
+        $this->app['view']->replaceNamespace('bladeJavaScript', [__DIR__.'/resources/views/override']);
+
+        $this->assertEquals(
+            '<script type="application/javascript">window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'key\'] = \'value\';</script>',
+            $this->renderView('keyValue')
+        );
+    }
 }
