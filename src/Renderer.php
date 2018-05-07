@@ -36,12 +36,16 @@ class Renderer
      * @param array ...$arguments
      *
      * @return string
+     *
+     * @throws \Throwable
      */
     public function render(...$arguments): string
     {
         $variables = $this->normalizeArguments($arguments);
 
-        return '<script>'.$this->buildJavaScriptSyntax($variables).'</script>';
+        return view('bladeJavaScript::index', [
+            'javaScript' => $this->buildJavaScriptSyntax($variables),
+        ])->render();
     }
 
     /**

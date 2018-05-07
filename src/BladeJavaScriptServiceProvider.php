@@ -12,6 +12,12 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
             __DIR__.'/../config/blade-javascript.php' => config_path('blade-javascript.php'),
         ], 'config');
 
+        $this->publishes([
+            __DIR__.'/../resources/views' => base_path('resources/views/vendor/bladeJavaScript'),
+        ], 'views');
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'bladeJavaScript');
+
         $this->app['blade.compiler']->directive('javascript', function ($expression) {
             $expression = $this->makeBackwardsCompatible($expression);
 
