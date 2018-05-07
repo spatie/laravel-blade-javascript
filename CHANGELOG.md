@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file.
 
+## 2.2.0 - 2018-05-07
+- Added: a publishable view
+
 ## 2.1.2 - 2018-02-20
 - Rendering improvements
 
