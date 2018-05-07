@@ -41,7 +41,7 @@ The package will automatically register itself.
 Optionally the config file can be published with
 
 ```bash
-php artisan vendor:publish --provider="Spatie\BladeJavaScript\BladeJavaScriptServiceProvider"
+php artisan vendor:publish --provider="Spatie\BladeJavaScript\BladeJavaScriptServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
@@ -56,6 +56,14 @@ return [
     'namespace' => '',
 ];
 ```
+
+If you want to customzize the generated `<script>` tag you can publish and override the used view.
+
+```bash
+php artisan vendor:publish --provider="Spatie\BladeJavaScript\BladeJavaScriptServiceProvider" --tag="views"
+```
+
+After this you can edit the published view `resources/views/vendor/bladeJavaScript/index.blade.php`. This is usefull to add the `type` or a CSP `nonce`.
 
 ## Usage
 
