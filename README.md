@@ -3,7 +3,6 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-blade-javascript.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-blade-javascript)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/spatie/laravel-blade-javascript/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-blade-javascript)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/07458966-b1a2-4cef-8020-02b03f0dd240.svg?style=flat-square)](https://insight.sensiolabs.com/projects/07458966-b1a2-4cef-8020-02b03f0dd240)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-blade-javascript.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-blade-javascript)
 [![StyleCI](https://styleci.io/repos/59886128/shield)](https://styleci.io/repos/59886128)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-blade-javascript.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-blade-javascript)
@@ -57,7 +56,7 @@ return [
 ];
 ```
 
-If you want to customzize the generated `<script>` tag you can publish and override the used view.
+If you want to customize the generated `<script>` tag you can publish and override the used view.
 
 ```bash
 php artisan vendor:publish --provider="Spatie\BladeJavaScript\BladeJavaScriptServiceProvider" --tag="views"
