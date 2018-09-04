@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file.
 
-## 2.2.0 - 2018-09-04
+## 2.2.1 - 2018-09-04
 - Added: Laravel 5.7 compatibility
 
 ## 2.2.0 - 2018-05-07
