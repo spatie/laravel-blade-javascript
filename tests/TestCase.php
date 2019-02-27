@@ -8,7 +8,7 @@ use Spatie\BladeJavaScript\BladeJavaScriptServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         Artisan::call('view:clear');
