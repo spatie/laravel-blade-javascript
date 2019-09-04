@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file.
 
+## 2.4.0 - 2019-09-04
+- Added: Laravel 6 compatibility
+
 ## 2.3.0 - 2019-02-27
 - drop support for L5.7 and below, PHP 7.1 and PHPUnit 7
 
