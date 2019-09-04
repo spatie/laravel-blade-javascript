@@ -3,6 +3,7 @@
 namespace Spatie\BladeJavaScript;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class BladeJavaScriptServiceProvider extends ServiceProvider
 {
@@ -27,10 +28,6 @@ class BladeJavaScriptServiceProvider extends ServiceProvider
 
     public function makeBackwardsCompatible($expression)
     {
-        if (starts_with(app()->version(), ['5.1', '5.2'])) {
-            return $expression;
-        }
-
         return "({$expression})";
     }
 
