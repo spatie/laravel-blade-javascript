@@ -3,7 +3,6 @@
 namespace Spatie\BladeJavaScript;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 
 class BladeJavaScriptServiceProvider extends ServiceProvider
 {
