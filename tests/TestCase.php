@@ -50,3 +50,4 @@ abstract class TestCase extends Orchestra
         return view($viewName)->with($withParameters)->render();
     }
 }
+//HAI NICE TO MEET 
