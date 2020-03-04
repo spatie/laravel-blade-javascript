@@ -3,16 +3,16 @@
 namespace Spatie\BladeJavaScript;
 
 use Illuminate\Config\Repository;
-use Illuminate\Support\Collection;
 use Illuminate\Contracts\Support\Arrayable;
-use Spatie\BladeJavaScript\Transformers\Transformer;
+use Illuminate\Support\Collection;
 use Spatie\BladeJavaScript\Exceptions\Untransformable;
-use Spatie\BladeJavaScript\Transformers\NullTransformer;
 use Spatie\BladeJavaScript\Transformers\ArrayTransformer;
+use Spatie\BladeJavaScript\Transformers\BooleanTransformer;
+use Spatie\BladeJavaScript\Transformers\NullTransformer;
+use Spatie\BladeJavaScript\Transformers\NumericTransformer;
 use Spatie\BladeJavaScript\Transformers\ObjectTransformer;
 use Spatie\BladeJavaScript\Transformers\StringTransformer;
-use Spatie\BladeJavaScript\Transformers\BooleanTransformer;
-use Spatie\BladeJavaScript\Transformers\NumericTransformer;
+use Spatie\BladeJavaScript\Transformers\Transformer;
 
 class Renderer
 {
