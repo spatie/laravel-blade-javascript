@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file.
 
+## 2.5.0 - 2020-03-04
+- Add support for Laravel 7
+
 ## 2.4.1 - 2019-09-16
 - Changed: Updated Laravel 6 compatibility for future versions
 
