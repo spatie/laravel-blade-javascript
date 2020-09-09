@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file.
 
+## 2.5.1 - 2020-09-09
+- Add support for Laravel 8
+
 ## 2.5.0 - 2020-03-04
 - Add support for Laravel 7
 
