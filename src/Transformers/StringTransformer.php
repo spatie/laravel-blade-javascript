@@ -26,6 +26,6 @@ class StringTransformer implements Transformer
 
     protected function escape(string $value): string
     {
-        return str_replace(['\\', "'", "\r", "\n"], ['\\\\', "\'", '\\r', '\\n'], $value);
+        return str_replace(['\\', "'", "\r", "\n", '<', '>'], ['\\\\', "\'", '\\r', '\\n', '\<', '\>'], $value);
     }
 }

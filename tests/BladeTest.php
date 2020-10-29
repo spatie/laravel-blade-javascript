@@ -103,6 +103,17 @@ class BladeTest extends TestCase
     }
 
     /** @test */
+    public function it_escapes_tags_in_a_string()
+    {
+        $parameter = ['string' => "This is a <tag>"];
+
+        $this->assertEquals(
+            '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'string\'] = \'This is a \<tag\>\';</script>',
+            $this->renderView('variable', compact('parameter'))
+        );
+    }
+
+    /** @test */
     public function it_can_render_arrayable_objects()
     {
         $parameter = new class implements Arrayable {
