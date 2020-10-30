@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-blade-javascript` will be documented in this file.
 
+## 2.5.2 - 2020-10-30
+
+- escape tags in strings (#52)
+
 ## 2.5.1 - 2020-09-09
 - Add support for Laravel 8
 
