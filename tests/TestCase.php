@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\BladeJavaScript\Test;
+namespace Spatie\BladeJavaScript\Tests;
 
 use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase as Orchestra;

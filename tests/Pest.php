@@ -1,6 +1,6 @@
 <?php
 
-uses(Spatie\BladeJavaScript\Test\TestCase::class)->in('.');
+uses(Spatie\BladeJavaScript\Tests\TestCase::class)->in('.');
 
 function renderView(string $viewName, array $withParameters = []): string
 {
