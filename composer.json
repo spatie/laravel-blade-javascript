@@ -42,7 +42,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\BladeJavaScript\\Test\\": "tests"
+            "Spatie\\BladeJavaScript\\Tests\\": "tests"
         }
     },
     "scripts": {
