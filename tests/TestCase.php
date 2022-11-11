@@ -1,16 +1,17 @@
 <?php
 
-namespace Spatie\BladeJavaScript\Test;
+namespace Spatie\BladeJavaScript\Tests;
 
-use Artisan;
+use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\BladeJavaScript\BladeJavaScriptServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
+
         Artisan::call('view:clear');
         Artisan::call('cache:clear');
     }
@@ -36,17 +37,6 @@ abstract class TestCase extends Orchestra
     {
         $app['config']->set('blade-javascript.namespace', 'js');
 
-        $app['config']->set('view.paths', [__DIR__.'/resources/views']);
-    }
-
-    /**
-     * @param $viewName
-     * @param array $withParameters
-     *
-     * @return string
-     */
-    public function renderView($viewName, $withParameters = [])
-    {
-        return view($viewName)->with($withParameters)->render();
+        $app['config']->set('view.paths', [__DIR__ . '/resources/views']);
     }
 }
