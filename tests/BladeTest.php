@@ -13,43 +13,43 @@ it('can render', function (mixed $parameter, string $expected) {
 })
     ->with([
         'an array' => [
-            'parameter' => fn () => ['key' => 'value'],
+            'parameter' => ['key' => 'value'],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'key\'] = \'value\';</script>',
         ],
         'a boolean with value of `true`' => [
-            'parameter' => fn () => ['boolean' => true],
+            'parameter' => ['boolean' => true],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'boolean\'] = true;</script>',
         ],
         'a boolean with value of `false`' => [
-            'parameter' => fn () => ['boolean' => false],
+            'parameter' => ['boolean' => false],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'boolean\'] = false;</script>',
         ],
         'an integer' => [
-            'parameter' => fn () => ['number' => 5],
+            'parameter' => ['number' => 5],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'number\'] = 5;</script>',
         ],
         'an float' => [
-            'parameter' => fn () => ['number' => 5.5],
+            'parameter' => ['number' => 5.5],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'number\'] = 5.5;</script>',
         ],
         'null' => [
-            'parameter' => fn () => ['nothing' => null],
+            'parameter' => ['nothing' => null],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'nothing\'] = null;</script>',
         ],
         'a string with line breaks' => [
-            'parameter' => fn () => ['string' => "This is\r\n a test"],
+            'parameter' => ['string' => "This is\r\n a test"],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'string\'] = \'This is\\r\\n a test\';</script>',
         ],
         'a numeric string as a string' => [
-            'parameter' => fn () => ['socialSecurity' => '123456789'],
+            'parameter' => ['socialSecurity' => '123456789'],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'socialSecurity\'] = \'123456789\';</script>',
         ],
         'escapes tags in a string' => [
-            'parameter' => fn () => ['string' => "This is a <tag>"],
+            'parameter' => ['string' => "This is a <tag>"],
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'string\'] = \'This is a \<tag\>\';</script>',
         ],
         'arrayable objects' => [
-            'parameter' => fn () => new class () implements Arrayable {
+            'parameter' => new class () implements Arrayable {
                 public function toArray()
                 {
                     return ['arrayableKey' => 'arrayableValue'];
@@ -58,7 +58,7 @@ it('can render', function (mixed $parameter, string $expected) {
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'arrayableKey\'] = \'arrayableValue\';</script>',
         ],
         'JSON serializable objects' => [
-            'parameter' => fn () => new class () implements JsonSerializable {
+            'parameter' => new class () implements JsonSerializable {
                 public function jsonSerialize()
                 {
                     return ['jsonKey' => 'jsonValue'];
@@ -67,7 +67,7 @@ it('can render', function (mixed $parameter, string $expected) {
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'0\'] = {"jsonKey":"jsonValue"};</script>',
         ],
         'an object that implements `toJson`' => [
-            'parameter' => fn () => new class () {
+            'parameter' => new class () {
                 public function toJson()
                 {
                     return json_encode(['jsonKey' => 'jsonValue']);
@@ -76,7 +76,7 @@ it('can render', function (mixed $parameter, string $expected) {
             'expected' => '<script>window[\'js\'] = window[\'js\'] || {};window[\'js\'][\'0\'] = {"jsonKey":"jsonValue"};</script>',
         ],
         'an object that implements `toString`' => [
-            'parameter' => fn () => new class () {
+            'parameter' => new class () {
                 public function __toString()
                 {
                     return 'string';
