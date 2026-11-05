@@ -59,7 +59,7 @@ it('can render', function (mixed $parameter, string $expected) {
         ],
         'JSON serializable objects' => [
             new class () implements JsonSerializable {
-                public function jsonSerialize()
+                public function jsonSerialize(): mixed
                 {
                     return ['jsonKey' => 'jsonValue'];
                 }
@@ -93,9 +93,9 @@ it('can render data without a namespace', function () {
         ->toEqual('<script>window[\'key\'] = \'value\';</script>');
 });
 
-it('cannot translate resources to Javascript')
-    ->tap(fn () => renderView('variable', ['parameter' => fopen(__FILE__, 'r')]))
-    ->throws(ErrorException::class);
+it('cannot translate resources to Javascript', function () {
+    renderView('variable', ['parameter' => fopen(__FILE__, 'r')]);
+})->throws(ErrorException::class);
 
 it('can render a customized view', function () {
     view()->replaceNamespace('bladeJavaScript', [__DIR__ . '/resources/views/override']);
